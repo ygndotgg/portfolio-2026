@@ -3,7 +3,7 @@ import { getAllRepos } from "@/lib/github" // your updated function
 
 export async function GET() {
   try {
-    const repos = await getAllRepos("YGNTECHSTARTUP")
+    const repos = await getAllRepos("ygndotgg")
 
     return NextResponse.json(repos, {
       headers: {

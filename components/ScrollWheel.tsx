@@ -53,7 +53,7 @@ export default function ScrollController() {
       <div
         onClick={handlePageClick}
         className="
-          pointer-events-none
+          cursor-pointer
           fixed
           inset-0
           z-50
