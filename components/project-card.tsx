@@ -33,7 +33,7 @@ export default function ProjectCard({
   imageContainerClassName,
   containerClassName,
   revealDelay = 0,
-  isMainProject = false,
+  isMainProject = true,
 }: Props) {
   return (
     <article className={cn("group relative", isMainProject && "md:col-span-2", containerClassName)}>
@@ -47,19 +47,19 @@ export default function ProjectCard({
         <div className={cn("relative overflow-hidden rounded-[1.35rem] bg-black flex flex-col h-auto", isMainProject && "flex-row lg:flex-row items-stretch")}>
           {/* Image Container */}
           <div className={cn(isMainProject && "w-full lg:w-2/3")}>
-          {/* Image - Landscape Mode */}
-          <div className={cn("relative w-full", isMainProject ? "lg:h-80 aspect-video lg:aspect-auto" : "aspect-video", imageContainerClassName)}>
-            <Image
-              src={imageSrc || "/placeholder.svg"}
-              alt={title}
-              fill
-              sizes={isMainProject ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
-              priority={priority}
-              className="object-cover"
-            />
-            {/* Subtle vignette */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-          </div>
+            {/* Image - Landscape Mode */}
+            <div className={cn("relative w-full", isMainProject ? "lg:h-80 aspect-video lg:aspect-auto" : "aspect-video", imageContainerClassName)}>
+              <Image
+                src={imageSrc || "/placeholder.svg"}
+                alt={title}
+                fill
+                sizes={isMainProject ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
+                priority={priority}
+                className="object-cover"
+              />
+              {/* Subtle vignette */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+            </div>
           </div>
 
           {/* Tags */}

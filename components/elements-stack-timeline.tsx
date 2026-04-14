@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
-import Link from "next/link"
 
 export interface TimelineItem {
   id: string
@@ -52,24 +51,23 @@ const TimelineCard = ({
   hovered: boolean
   onHover: (id: string | null) => void
 }) => {
-  const handleClick = () => {
-    // Navigation will be handled by the Link wrapper, but we can still manage hover state
-    onHover(hovered ? null : item.id)
-  }
-
   return (
-    <Link
-      href={`/projects/${item.id}`}
-      className="block h-full"
+    <div
+      onMouseEnter={() => onHover(item.id)}
+      onMouseLeave={() => onHover(null)}
+      onClick={() => {
+        window.location.href = `/projects/${item.id}`
+      }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          window.location.href = `/projects/${item.id}`
+        }
+      }}
+      aria-expanded={hovered}
+      className="border border-gray-700 group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative h-48 md:h-64 rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 hover:border-white/50 hover:shadow-lg hover:shadow-white/20 z-10"
     >
-      <div
-        onMouseEnter={() => onHover(item.id)}
-        onMouseLeave={() => onHover(null)}
-        onClick={handleClick}
-        role="button"
-        aria-expanded={hovered}
-        className="border border-gray-700 group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative h-48 md:h-64 rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 hover:border-white/50 hover:shadow-lg hover:shadow-white/20"
-      >
       {/* Corner decorations */}
       <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white" />
       <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-white" />
@@ -123,8 +121,7 @@ const TimelineCard = ({
           </p>
         )}
       </div>
-      </div>
-    </Link>
+    </div>
   )
 }
 

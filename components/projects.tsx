@@ -9,7 +9,7 @@ import DotGridShader from "@/components/DotGridShader"
 import ProjectCard from "@/components/project-card"
 import AnimatedHeading from "@/components/animated-heading"
 import RevealOnView from "@/components/reveal-on-view"
-import EligibleRoles from "./eligible-roles"
+import CompactDetails from "./compact-details"
 
 export default function ProjectPage() {
   const projects = [
@@ -22,6 +22,7 @@ export default function ProjectPage() {
       priority: true,
       gradientFrom: "#0f172a",
       gradientTo: "#6d28d9",
+      isMainProject: true,
     },
     {
       title: "YGN TECHSTACK",
@@ -32,6 +33,7 @@ export default function ProjectPage() {
       priority: true,
       gradientFrom: "#111827",
       gradientTo: "#2563eb",
+      isMainProject: true,
     },
     {
       title: "Build Bharat Through AI",
@@ -42,6 +44,7 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0b132b",
       gradientTo: "#5bc0be",
+      isMainProject: false,
     },
     {
       title: "Genesis Nexus ",
@@ -52,6 +55,7 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0f172a",
       gradientTo: "#10b981",
+      isMainProject: false,
     },
     {
       title: "Profinati",
@@ -62,6 +66,7 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#1f2937",
       gradientTo: "#8b5cf6",
+      isMainProject: false,
     },
     {
       title: "PokeGuess",
@@ -72,6 +77,7 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0b132b",
       gradientTo: "#10b981",
+      isMainProject: false,
     },
   ]
 
@@ -144,7 +150,7 @@ export default function ProjectPage() {
                   </ul>
                 </div>
               </div>
-              <EligibleRoles />
+              <CompactDetails />
             </RevealOnView>
           </aside>
 
@@ -162,6 +168,7 @@ export default function ProjectPage() {
                 gradientFrom={p.gradientFrom}
                 gradientTo={p.gradientTo}
                 revealDelay={idx * 0.06}
+                isMainProject={p.isMainProject}
               />
             ))}
           </div>

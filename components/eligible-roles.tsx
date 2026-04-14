@@ -29,19 +29,19 @@ const roles = [
 export default function EligibleRoles() {
   return (
     <div className="w-full">
-      <motion.h3 
+      <motion.h3
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-2xl sm:text-3xl font-bold mb-8 text-white"
       >
-        Roles I&apos;m Eligible For
+
       </motion.h3>
-      
+
       <div className="space-y-4">
         {/* Timeline line */}
         <div className="absolute left-8 sm:left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500/50 to-blue-500/0 rounded-full hidden sm:block" />
-        
+
         <div className="relative space-y-6">
           {roles.map((role, idx) => (
             <motion.div
@@ -71,9 +71,9 @@ export default function EligibleRoles() {
                 <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg" style={{
                   background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.2), transparent)'
                 }} />
-                
+
                 <div className="relative z-10">
-                  <motion.h4 
+                  <motion.h4
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: role.delay + 0.1 }}
@@ -81,7 +81,7 @@ export default function EligibleRoles() {
                   >
                     {role.title}
                   </motion.h4>
-                  <motion.p 
+                  <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: role.delay + 0.2 }}
@@ -89,7 +89,7 @@ export default function EligibleRoles() {
                   >
                     {role.description}
                   </motion.p>
-                  
+
                   {/* Animated underline */}
                   <motion.div
                     initial={{ scaleX: 0 }}
