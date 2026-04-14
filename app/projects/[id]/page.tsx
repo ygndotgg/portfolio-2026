@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import EligibleRoles from '@/components/eligible-roles'
 import RevealOnView from '@/components/reveal-on-view'
 
 interface ProjectDetailsPageProps {

@@ -154,22 +154,26 @@ export default function ProjectPage() {
             </RevealOnView>
           </aside>
 
-          {/* RIGHT: 2 column grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* RIGHT: Dynamic grid layout - main projects span 2 columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-max">
             {projects.map((p, idx) => (
-              <ProjectCard
+              <div
                 key={p.title}
-                title={p.title}
-                subtitle={p.subtitle}
-                imageSrc={p.imageSrc}
-                tags={p.tags}
-                href={p.href}
-                priority={p.priority}
-                gradientFrom={p.gradientFrom}
-                gradientTo={p.gradientTo}
-                revealDelay={idx * 0.06}
-                isMainProject={p.isMainProject}
-              />
+                className={p.isMainProject ? "md:col-span-2" : ""}
+              >
+                <ProjectCard
+                  title={p.title}
+                  subtitle={p.subtitle}
+                  imageSrc={p.imageSrc}
+                  tags={p.tags}
+                  href={p.href}
+                  priority={p.priority}
+                  gradientFrom={p.gradientFrom}
+                  gradientTo={p.gradientTo}
+                  revealDelay={idx * 0.06}
+                  isMainProject={p.isMainProject}
+                />
+              </div>
             ))}
           </div>
         </div>
