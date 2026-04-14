@@ -13,6 +13,7 @@ import RevealOnView from "@/components/reveal-on-view"
 export default function ProjectPage() {
   const projects = [
     {
+      slug: "temple-campaigning",
       title: " Temple Campaigning ",
       subtitle: "Web App for Temple Donations",
       imageSrc: "/camp.jpg",
@@ -21,8 +22,16 @@ export default function ProjectPage() {
       priority: true,
       gradientFrom: "#0f172a",
       gradientTo: "#6d28d9",
+      referenceImage: "/camp.jpg",
+      homePageImage: "/camp.jpg",
+      elementalResonance: {
+        type: "Hydro",
+        color: "#0ea5e9",
+        status: "Completed"
+      }
     },
     {
+      slug: "ygn-techstack",
       title: "YGN TECHSTACK",
       subtitle: "CLI tool & design system",
       imageSrc: "/createygn.png",
@@ -31,8 +40,16 @@ export default function ProjectPage() {
       priority: true,
       gradientFrom: "#111827",
       gradientTo: "#2563eb",
+      referenceImage: "/createygn.png",
+      homePageImage: "/createygn.png",
+      elementalResonance: {
+        type: "Electro",
+        color: "#f59e0b",
+        status: "Completed"
+      }
     },
     {
+      slug: "build-bharat-ai",
       title: "Build Bharat Through AI",
       subtitle: "Hackathon Registration Platform",
       imageSrc: "/bbtai.png",
@@ -41,8 +58,16 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0b132b",
       gradientTo: "#5bc0be",
+      referenceImage: "/bbtai.png",
+      homePageImage: "/bbtai.png",
+      elementalResonance: {
+        type: "Cryo",
+        color: "#06b6d4",
+        status: "Completed"
+      }
     },
     {
+      slug: "genesis-nexus",
       title: "Genesis Nexus ",
       subtitle: "AI Freelancing Platform ",
       imageSrc: "/genesis-nexus.png",
@@ -51,8 +76,16 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0f172a",
       gradientTo: "#10b981",
+      referenceImage: "/genesis-nexus.png",
+      homePageImage: "/genesis-nexus.png",
+      elementalResonance: {
+        type: "Dendro",
+        color: "#10b981",
+        status: "Completed"
+      }
     },
     {
+      slug: "profinati",
       title: "Profinati",
       subtitle: "Content Moderation Api",
       imageSrc: "/profinati.png",
@@ -61,8 +94,16 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#1f2937",
       gradientTo: "#8b5cf6",
+      referenceImage: "/profinati.png",
+      homePageImage: "/profinati.png",
+      elementalResonance: {
+        type: "Pyro",
+        color: "#ef4444",
+        status: "Completed"
+      }
     },
     {
+      slug: "pokeguess",
       title: "PokeGuess",
       subtitle: "A Simple Pokemon Guessing Game",
       imageSrc: "/pokeguess.png",
@@ -71,6 +112,13 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0b132b",
       gradientTo: "#10b981",
+      referenceImage: "/pokeguess.png",
+      homePageImage: "/pokeguess.png",
+      elementalResonance: {
+        type: "Geo",
+        color: "#dc2626",
+        status: "Completed"
+      }
     },
   ]
  
@@ -155,7 +203,7 @@ export default function ProjectPage() {
                 subtitle={p.subtitle}
                 imageSrc={p.imageSrc}
                 tags={p.tags}
-                href={p.href}
+                href={`/projects/${p.slug}`}
                 priority={p.priority}
                 revealDelay={idx * 0.1}
               />
