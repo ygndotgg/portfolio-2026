@@ -6,7 +6,7 @@
 // import { Button } from "@/components/ui/button"
 import DotGridShader from "@/components/DotGridShader"
 
-import ProjectCard from "@/components/project-card"
+import FeatureProject from "@/components/feature-project"
 import AnimatedHeading from "@/components/animated-heading"
 import RevealOnView from "@/components/reveal-on-view"
 
@@ -147,9 +147,9 @@ export default function ProjectPage() {
           </aside>
 
           {/* RIGHT: simplified, no internal card or horizontal carousel */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {projects.map((p, idx) => (
-              <ProjectCard
+              <FeatureProject
                 key={p.title}
                 title={p.title}
                 subtitle={p.subtitle}
@@ -157,11 +157,7 @@ export default function ProjectPage() {
                 tags={p.tags}
                 href={p.href}
                 priority={p.priority}
-                gradientFrom={p.gradientFrom}
-                gradientTo={p.gradientTo}
-                imageContainerClassName="lg:h-full"
-                containerClassName="lg:h-[calc(100svh-2rem)]"
-                revealDelay={idx * 0.06}
+                revealDelay={idx * 0.1}
               />
             ))}
           </div>
