@@ -46,15 +46,15 @@ export function Footer() {
       animate="show"
       className="relative bottom-0 left-0 right-0 bg-background backdrop-blur-sm border-t border-zinc-300 dark:border-zinc-800 py-4 px-4 "
     >
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-        <motion.div variants={item} className="flex space-x-4">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 relative z-20">
+        <motion.div variants={item} className="flex space-x-4 pointer-events-auto">
           {socialLinks.map((link) => (
             <motion.a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 transition-colors"
+              className="text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 transition-colors cursor-pointer pointer-events-auto"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label={link.label}

@@ -77,12 +77,12 @@ export default function ElementalShowcase() {
       </div>
 
       {/* Elemental Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12 relative z-10">
         {elementalData.map((element, idx) => (
           <button
             key={element.id}
             onClick={() => setSelectedElement(element)}
-            className="group relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black"
+            className="group relative rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black cursor-pointer pointer-events-auto"
             style={{
               focusRingColor: element.color,
             }}
@@ -212,7 +212,7 @@ export default function ElementalShowcase() {
             {/* CTA Button */}
             {selectedElement.status === 'completed' ? (
               <button
-                className="px-6 py-3 rounded-lg font-semibold transition-all duration-300 border-2"
+                className="px-6 py-3 rounded-lg font-semibold transition-all duration-300 border-2 cursor-pointer pointer-events-auto"
                 style={{
                   backgroundColor: `${selectedElement.color}20`,
                   borderColor: selectedElement.color,
