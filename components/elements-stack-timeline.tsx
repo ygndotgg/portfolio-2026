@@ -59,7 +59,7 @@ const TimelineCard = ({
 
   return (
     <Link
-      href={`/project/${item.id}`}
+      href={`/projects/${item.id}`}
       className="block h-full"
     >
       <div

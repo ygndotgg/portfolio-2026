@@ -42,9 +42,9 @@ export default function ProjectCard({
           backgroundImage: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`,
         }}
       >
-        <div className="relative overflow-hidden rounded-[1.35rem] bg-black lg:h-full">
-          {/* Image */}
-          <div className={cn("relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto lg:h-full", imageContainerClassName)}>
+        <div className="relative overflow-hidden rounded-[1.35rem] bg-black flex flex-col h-auto">
+          {/* Image - Landscape Mode */}
+          <div className={cn("relative w-full aspect-video", imageContainerClassName)}>
             <Image
               src={imageSrc || "/placeholder.svg"}
               alt={title}
@@ -54,10 +54,10 @@ export default function ProjectCard({
               className="object-cover"
             />
             {/* Subtle vignette */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/30" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
           </div>
 
-          {/* Top-left tags */}
+          {/* Tags */}
           <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2">
             {tags.map((t) => (
               <Badge
@@ -70,22 +70,20 @@ export default function ProjectCard({
             ))}
           </div>
 
-          {/* Bottom content */}
-          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h3 className="text-lg font-semibold sm:text-xl">{title}</h3>
-                <p className="text-sm text-white/70">{subtitle}</p>
-              </div>
-              <Link
-                href={href}
-                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium backdrop-blur transition-colors hover:bg-white/20 self-start sm:self-auto"
-                aria-label={`Open case study: ${title}`}
-              >
-                Case study
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+          {/* Bottom content - Compact layout */}
+          <div className="p-4 sm:p-5 flex flex-col gap-3">
+            <div>
+              <h3 className="text-lg font-semibold sm:text-xl leading-tight">{title}</h3>
+              <p className="text-sm text-white/70 line-clamp-2">{subtitle}</p>
             </div>
+            <Link
+              href={href}
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium backdrop-blur transition-colors hover:bg-white/20 self-start group/btn"
+              aria-label={`Open case study: ${title}`}
+            >
+              Case study
+              <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+            </Link>
           </div>
         </div>
       </RevealOnView>

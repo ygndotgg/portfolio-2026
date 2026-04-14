@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'motion/react'
+import EligibleRoles from '@/components/eligible-roles'
+import RevealOnView from '@/components/reveal-on-view'
 
 interface ProjectDetailsPageProps {
   params: {
@@ -229,6 +231,15 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
             </div>
           </div>
         </motion.div>
+
+        {/* Eligible Roles Section */}
+        <RevealOnView
+          as="div"
+          intensity="hero"
+          className="mt-12"
+        >
+          <EligibleRoles />
+        </RevealOnView>
       </div>
     </div>
   )

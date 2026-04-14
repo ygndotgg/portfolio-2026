@@ -79,7 +79,7 @@ export default function ProjectPage() {
     <main id="projects" className="bg-neutral-950 text-white">
       {/* HERO: full-viewport row. Left is sticky; right scrolls internally. */}
       <section className="px-4 pt-4 pb-16 lg:pb-4">
-        <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-[420px_1fr]">
+        <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-[420px_minmax(0,1fr)]">
           {/* LEFT: sticky and full height, no cut off */}
           <aside className="lg:sticky lg:top-4 lg:h-[calc(100svh-2rem)]">
             <RevealOnView
@@ -146,8 +146,8 @@ export default function ProjectPage() {
             </RevealOnView>
           </aside>
 
-          {/* RIGHT: simplified, no internal card or horizontal carousel */}
-          <div className="space-y-4">
+          {/* RIGHT: 2 column grid layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {projects.map((p, idx) => (
               <ProjectCard
                 key={p.title}
@@ -159,8 +159,6 @@ export default function ProjectPage() {
                 priority={p.priority}
                 gradientFrom={p.gradientFrom}
                 gradientTo={p.gradientTo}
-                imageContainerClassName="lg:h-full"
-                containerClassName="lg:h-[calc(100svh-2rem)]"
                 revealDelay={idx * 0.06}
               />
             ))}
