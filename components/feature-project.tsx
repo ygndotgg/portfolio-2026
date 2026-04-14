@@ -86,58 +86,57 @@ export default function FeatureProject({
 
       <article className="group relative rounded-2xl border border-white/10 overflow-hidden bg-gradient-to-br from-neutral-900/50 to-black/50 backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
         
-        {/* Container for landscape layout */}
-        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 p-4 sm:p-6 lg:p-8 min-h-[320px] lg:min-h-[400px]">
+        {/* Container for vertical layout: image top, details bottom */}
+        <div className="flex flex-col">
           
-          {/* Left: Image in landscape */}
-          <div className="relative w-full order-2 lg:order-1">
-            <div className="relative w-full h-[250px] sm:h-[300px] lg:h-full rounded-xl overflow-hidden">
-              <Image
-                src={imageSrc || "/placeholder.svg"}
-                alt={title}
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                priority={priority}
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              {/* Subtle vignette */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10" />
-            </div>
+          {/* Top: Image in landscape */}
+          <div className="relative w-full h-[280px] sm:h-[350px] lg:h-[450px]">
+            <Image
+              src={imageSrc || "/placeholder.svg"}
+              alt={title}
+              fill
+              sizes="100vw"
+              priority={priority}
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Subtle vignette and gradient overlay */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           </div>
 
-          {/* Right: Content */}
-          <div className="flex flex-col justify-between order-1 lg:order-2">
+          {/* Bottom: Content overlay or below image */}
+          <div className="p-4 sm:p-6 lg:p-8">
             
-            {/* Top: Title and description */}
-            <div className="mb-6">
+            {/* Title and description */}
+            <div className="mb-4">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-blue-300">
                 {title}
               </h3>
-              <p className="text-sm sm:text-base text-white/70 mb-4 leading-relaxed max-w-xl group-hover:text-white/90 transition-colors duration-300">
+              <p className="text-sm sm:text-base text-white/70 leading-relaxed group-hover:text-white/90 transition-colors duration-300">
                 {subtitle}
               </p>
-
-              {/* Tags with varied colors */}
-              <div className="flex flex-wrap gap-2">
-                {tags.map((t, idx) => {
-                  const colorClass = tagColors[idx % tagColors.length]
-                  return (
-                    <span
-                      key={t}
-                      className={cn(
-                        "inline-block px-3 py-1 text-xs font-medium rounded-full border transition-all duration-300",
-                        colorClass,
-                        "hover:scale-105 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]"
-                      )}
-                    >
-                      {t}
-                    </span>
-                  )
-                })}
-              </div>
             </div>
 
-            {/* Bottom: Visit link */}
+            {/* Tags with varied colors */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {tags.map((t, idx) => {
+                const colorClass = tagColors[idx % tagColors.length]
+                return (
+                  <span
+                    key={t}
+                    className={cn(
+                      "inline-block px-3 py-1 text-xs font-medium rounded-full border transition-all duration-300 animate-fade-in",
+                      colorClass,
+                      "hover:scale-105 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+                    )}
+                    style={{ animationDelay: `${0.1 + idx * 0.05}s` }}
+                  >
+                    {t}
+                  </span>
+                )
+              })}
+            </div>
+
+            {/* Visit link */}
             <div className="flex items-center gap-3">
               <Link
                 href={href}
