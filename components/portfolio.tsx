@@ -12,7 +12,7 @@ import { ExperienceEducationGrid } from "./experience-education"
 
 import ScrollController from "./ScrollWheel"
 
-const timelineItems: TimelineItem[] = [
+export const timelineItems: TimelineItem[] = [
   {
     id: "Hydro",
     label: "Hydro",
@@ -21,7 +21,7 @@ const timelineItems: TimelineItem[] = [
     gradientColor: "#0066ff",
     icon: "/hydro.jpg",
     status: "in-progress",
-    imge:"/hydroimge.jpeg"
+    imge: "/hydroimge.jpeg"
   },
   {
     id: "Dendro",
@@ -31,7 +31,7 @@ const timelineItems: TimelineItem[] = [
     gradientColor: "#00cc00",
     icon: "/dendro.jpg",
     status: "upcoming",
-    imge:"/dendroimg.jpeg"
+    imge: "/dendroimg.jpeg"
   },
   {
     id: "Anemo",
@@ -41,7 +41,7 @@ const timelineItems: TimelineItem[] = [
     gradientColor: "#54DCB4",
     icon: "/anemo.jpg",
     status: "upcoming",
-    imge:""
+    imge: ""
   },
   {
     id: "Pyro",
@@ -51,7 +51,7 @@ const timelineItems: TimelineItem[] = [
     gradientColor: "#cc0000",
     icon: "/pyro.jpg",
     status: "upcoming",
-    imge:""
+    imge: ""
   },
   {
     id: "Cryo",
@@ -61,16 +61,16 @@ const timelineItems: TimelineItem[] = [
     gradientColor: "#D4F1F8",
     icon: "/cryo.jpg",
     status: "upcoming",
-    imge:""
+    imge: ""
   },
 ]
 export default function Portfolio() {
-  
+
 
   return (
     <div
       className="bg-black font-mono relative"
-    
+
       style={{ cursor: "url(/skull-cursor.png) 16 16, auto" }}
     >
       {/* <style jsx>{`
@@ -223,8 +223,8 @@ export default function Portfolio() {
   }
 `}</style> */}
 
-{/* Scroll Wheel — hidden on mobile, visible on md+ */}
-{/* <div className=" fixed bottom-8 md:right-8 z-50">
+      {/* Scroll Wheel — hidden on mobile, visible on md+ */}
+      {/* <div className=" fixed bottom-8 md:right-8 z-50">
   <div
     className="cursor-pointer hover:scale-110 transition-transform duration-200"
     onClick={handleWheelClick}
@@ -242,10 +242,10 @@ export default function Portfolio() {
     />
   </div>
 </div> */}
- <main className="relative overflow-x-hidden">
-      {/* Your page content */}
-      <ScrollController/>
-    </main>
+      <main className="relative overflow-x-hidden">
+        {/* Your page content */}
+        <ScrollController />
+      </main>
 
 
       {/* Audio Elements */}
@@ -257,15 +257,15 @@ export default function Portfolio() {
       </audio> */}
 
       {/* Mac OS Style Menu Bar */}
-    
+
 
       {/* First Section - Main Portfolio */}
       <div className="p-4 sm:p-8 md:min-h-screen flex flex-col items-center md:justify-center justify-start relative">
         {/* Static Banner */}
-       <div className="w-full max-w-2xl ">
-        <ProfileCard name="Gagan Yarramsetty" title="System Engineer | Rustacean🦀" subtitle="YGN | Xiao" imageUrl="/ban.jpeg" />
-      </div>
-         {/* <div className="mx-auto mt-8 absolute right-0 bottom-0 ">
+        <div className="w-full max-w-2xl ">
+          <ProfileCard name="Gagan Yarramsetty" title="System Engineer | Rustacean🦀" subtitle="YGN | Xiao" imageUrl="/ban.jpeg" />
+        </div>
+        {/* <div className="mx-auto mt-8 absolute right-0 bottom-0 ">
       <PixelatedCanvas
         src="https://assets.aceternity.com/manu-red.png"
         width={400}
@@ -354,43 +354,50 @@ export default function Portfolio() {
         </div>
       </div>
 
-<HeroWithSidebar/>
+      <HeroWithSidebar />
+      
+      {/* Timeline Section */}
+      <ElementStackTimeline 
+        title="Elemental Resonance"
+        subtitle="Project Timeline"
+        items={timelineItems}
+      />
+
       {/* Third Section - Projects */}
-    <div>
-  {/* Experience Section */}
-  <section
-    id="experience"
-    className="
+      <div>
+        {/* Experience Section */}
+        <section
+          id="experience"
+          className="
       w-full
       px-4 sm:px-6 lg:px-8
       mx-auto
       max-w-6xl
       lg:max-w-screen-2xl
     "
-  >
-    {/* Heading stays centered */}
-    <div className="mb-4 text-center">
-      <h1 className="text-3xl sm:text-4xl font-bold text-slate-50 mb-2">
-        Experience & Education
-      </h1>
-      <p className="text-slate-400 text-base sm:text-lg">
-        Building my professional journey
-      </p>
-    </div>
+        >
+          {/* Heading stays centered */}
+          <div className="mb-4 text-center">
+            <h1 className="text-3xl sm:text-4xl font-bold text-slate-50 mb-2">
+              Experience & Education
+            </h1>
+            <p className="text-slate-400 text-base sm:text-lg">
+              Building my professional journey
+            </p>
+          </div>
 
-    {/* Bento grid controls its own width */}
-    <ExperienceEducationGrid />
-  </section>
+          {/* Bento grid controls its own width */}
+          <ExperienceEducationGrid />
+        </section>
 
-  {/* Other sections remain untouched */}
-  <ProjectPage />
-  <ElementStackTimeline items={timelineItems} />
-</div>
+        {/* Other sections remain untouched */}
+        <ProjectPage />
+      </div>
 
 
 
       {/* Fourth Section - Contact */}
-      
+
     </div>
   )
 }

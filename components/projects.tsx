@@ -9,6 +9,7 @@ import DotGridShader from "@/components/DotGridShader"
 import ProjectCard from "@/components/project-card"
 import AnimatedHeading from "@/components/animated-heading"
 import RevealOnView from "@/components/reveal-on-view"
+import CompactDetails from "./compact-details"
 
 export default function ProjectPage() {
   const projects = [
@@ -21,6 +22,7 @@ export default function ProjectPage() {
       priority: true,
       gradientFrom: "#0f172a",
       gradientTo: "#6d28d9",
+      isMainProject: true,
     },
     {
       title: "YGN TECHSTACK",
@@ -31,6 +33,7 @@ export default function ProjectPage() {
       priority: true,
       gradientFrom: "#111827",
       gradientTo: "#2563eb",
+      isMainProject: true,
     },
     {
       title: "Build Bharat Through AI",
@@ -41,6 +44,7 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0b132b",
       gradientTo: "#5bc0be",
+      isMainProject: false,
     },
     {
       title: "Genesis Nexus ",
@@ -51,35 +55,38 @@ export default function ProjectPage() {
       priority: false,
       gradientFrom: "#0f172a",
       gradientTo: "#10b981",
+      isMainProject: false,
     },
     {
       title: "Profinati",
       subtitle: "Content Moderation Api",
       imageSrc: "/profinati.png",
-      tags: [ "Real-time", "API"],
+      tags: ["Real-time", "API"],
       href: "https://profinati-ui.vercel.app/",
       priority: false,
       gradientFrom: "#1f2937",
       gradientTo: "#8b5cf6",
+      isMainProject: false,
     },
     {
       title: "PokeGuess",
       subtitle: "A Simple Pokemon Guessing Game",
       imageSrc: "/pokeguess.png",
-      tags: [ "Pokemon API", "Game"],
+      tags: ["Pokemon API", "Game"],
       href: "https://pokeguess-silk.vercel.app/",
       priority: false,
       gradientFrom: "#0b132b",
       gradientTo: "#10b981",
+      isMainProject: false,
     },
   ]
- 
+
 
   return (
     <main id="projects" className="bg-neutral-950 text-white">
       {/* HERO: full-viewport row. Left is sticky; right scrolls internally. */}
       <section className="px-4 pt-4 pb-16 lg:pb-4">
-        <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-[420px_1fr]">
+        <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-[420px_minmax(0,1fr)]">
           {/* LEFT: sticky and full height, no cut off */}
           <aside className="lg:sticky lg:top-4 lg:h-[calc(100svh-2rem)]">
             <RevealOnView
@@ -106,7 +113,7 @@ export default function ProjectPage() {
                 />
 
                 <p className="mt-4 max-w-[42ch] text-lg text-white/70">
-               YGN is a systems engineer who builds from first principles. He works primarily in Rust and has hands-on experience designing and shipping full-stack web systems
+                  YGN is a systems engineer who builds from first principles. He works primarily in Rust and has hands-on experience designing and shipping full-stack web systems
                 </p>
 
                 {/* CTAs */}
@@ -120,7 +127,7 @@ export default function ProjectPage() {
                 </div> */}
 
                 {/* Trusted by */}
-                 <div className="mt-4">
+                <div className="mt-4">
                   <p className="mb-3 text-xs font-semibold tracking-widest text-white/50">Tools & Technologies I&apos;VE WORKED </p>
                   <ul className="grid grid-cols-2   font-black text-white/25 sm:grid-cols-3">
                     <li className="text-yellow-500">Rust</li>
@@ -133,36 +140,40 @@ export default function ProjectPage() {
                     <li className="text-white">Sql</li>
                     <li className="text-red-500">Redis</li>
                     <li className="text-blue-400">Docker</li>
-                     <li className="text-orange-500">Cloudflare</li>
-               
+                    <li className="text-orange-500">Cloudflare</li>
+
                     <li className="text-purple-400">Helix</li>
-                         <li className="text-red-500">Git</li>
-                        
+                    <li className="text-red-500">Git</li>
+
                     <li className="text-white">Excalidraw</li>
-                          <li className="text-orange-500">Figma</li>
+                    <li className="text-orange-500">Figma</li>
                   </ul>
-                </div> 
+                </div>
               </div>
+              <CompactDetails />
             </RevealOnView>
           </aside>
 
-          {/* RIGHT: simplified, no internal card or horizontal carousel */}
-          <div className="space-y-4">
+          {/* RIGHT: Dynamic grid layout - main projects span 2 columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-max">
             {projects.map((p, idx) => (
-              <ProjectCard
+              <div
                 key={p.title}
-                title={p.title}
-                subtitle={p.subtitle}
-                imageSrc={p.imageSrc}
-                tags={p.tags}
-                href={p.href}
-                priority={p.priority}
-                gradientFrom={p.gradientFrom}
-                gradientTo={p.gradientTo}
-                imageContainerClassName="lg:h-full"
-                containerClassName="lg:h-[calc(100svh-2rem)]"
-                revealDelay={idx * 0.06}
-              />
+                className={p.isMainProject ? "md:col-span-2" : ""}
+              >
+                <ProjectCard
+                  title={p.title}
+                  subtitle={p.subtitle}
+                  imageSrc={p.imageSrc}
+                  tags={p.tags}
+                  href={p.href}
+                  priority={p.priority}
+                  gradientFrom={p.gradientFrom}
+                  gradientTo={p.gradientTo}
+                  revealDelay={idx * 0.06}
+                  isMainProject={p.isMainProject}
+                />
+              </div>
             ))}
           </div>
         </div>
