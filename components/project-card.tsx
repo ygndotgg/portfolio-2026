@@ -17,6 +17,7 @@ type Props = {
   imageContainerClassName?: string
   containerClassName?: string
   revealDelay?: number
+  isMainProject?: boolean
 }
 
 // Server Component (no client hooks)
@@ -32,29 +33,33 @@ export default function ProjectCard({
   imageContainerClassName,
   containerClassName,
   revealDelay = 0,
+  isMainProject = false,
 }: Props) {
   return (
-    <article className={cn("group relative", containerClassName)}>
+    <article className={cn("group relative", isMainProject && "md:col-span-2", containerClassName)}>
       <RevealOnView
         delay={revealDelay}
-        className="rounded-3xl border border-white/10 p-1 shadow-[0_10px_60px_-10px_rgba(0,0,0,0.6)] lg:h-full"
+        className={cn("rounded-3xl border border-white/10 p-1 shadow-[0_10px_60px_-10px_rgba(0,0,0,0.6)]", isMainProject && "lg:h-full")}
         style={{
           backgroundImage: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`,
         }}
       >
-        <div className="relative overflow-hidden rounded-[1.35rem] bg-black flex flex-col h-auto">
+        <div className={cn("relative overflow-hidden rounded-[1.35rem] bg-black flex flex-col h-auto", isMainProject && "flex-row lg:flex-row items-stretch")}>
+          {/* Image Container */}
+          <div className={cn(isMainProject && "w-full lg:w-2/3")}>
           {/* Image - Landscape Mode */}
-          <div className={cn("relative w-full aspect-video", imageContainerClassName)}>
+          <div className={cn("relative w-full", isMainProject ? "lg:h-80 aspect-video lg:aspect-auto" : "aspect-video", imageContainerClassName)}>
             <Image
               src={imageSrc || "/placeholder.svg"}
               alt={title}
               fill
-              sizes="(min-width: 1024px) 66vw, 100vw"
+              sizes={isMainProject ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
               priority={priority}
               className="object-cover"
             />
             {/* Subtle vignette */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+          </div>
           </div>
 
           {/* Tags */}
@@ -70,11 +75,11 @@ export default function ProjectCard({
             ))}
           </div>
 
-          {/* Bottom content - Compact layout */}
-          <div className="p-4 sm:p-5 flex flex-col gap-3">
+          {/* Bottom content - Compact layout or side layout for main */}
+          <div className={cn("p-4 sm:p-5 flex flex-col gap-3 justify-between", isMainProject && "w-full lg:w-1/3 lg:p-8")}>
             <div>
-              <h3 className="text-lg font-semibold sm:text-xl leading-tight">{title}</h3>
-              <p className="text-sm text-white/70 line-clamp-2">{subtitle}</p>
+              <h3 className={cn("font-semibold leading-tight", isMainProject ? "text-2xl lg:text-3xl" : "text-lg sm:text-xl")}>{title}</h3>
+              <p className={cn("text-white/70", isMainProject ? "text-base lg:text-lg line-clamp-3" : "text-sm line-clamp-2")}>{subtitle}</p>
             </div>
             <Link
               href={href}

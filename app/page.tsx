@@ -1,12 +1,15 @@
+import { ElementStackTimeline } from '@/components/elements-stack-timeline'
 import { Footer } from '@/components/Footer'
-import Portfolio from '@/components/portfolio'
+import Portfolio, { timelineItems } from '@/components/portfolio'
 // import React from 'react'
 
 const page = () => {
   return (
     <div >
-<Portfolio/>
-<Footer/>
+      <Portfolio />
+      <ElementStackTimeline items={timelineItems} />
+
+      <Footer />
     </div>
 
   )
