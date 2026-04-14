@@ -44,16 +44,34 @@ export default function ProjectCard({
           backgroundImage: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`,
         }}
       >
-        <div className={cn("relative overflow-hidden rounded-[1.35rem] bg-black flex flex-col h-auto", isMainProject && "flex-row lg:flex-row items-stretch")}>
+        <div className={cn("relative overflow-hidden rounded-[1.35rem] bg-black flex flex-col h-auto")}>
+          {/* Content on top for main projects */}
+          {isMainProject && (
+            <div className="p-6 lg:p-8 flex flex-col justify-between flex-1">
+              <div>
+                <h3 className="font-semibold leading-tight text-2xl lg:text-3xl mb-3">{title}</h3>
+                <p className="text-white/70 text-base lg:text-lg line-clamp-3">{subtitle}</p>
+              </div>
+              <Link
+                href={href}
+                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium backdrop-blur transition-colors hover:bg-white/20 self-start group/btn mt-4"
+                aria-label={`Open case study: ${title}`}
+              >
+                Case study
+                <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+              </Link>
+            </div>
+          )}
+
           {/* Image Container */}
-          <div className={cn(isMainProject && "w-full lg:w-2/3")}>
+          <div className={cn(isMainProject && "w-full order-last")}>
             {/* Image - Landscape Mode */}
-            <div className={cn("relative w-full", isMainProject ? "lg:h-80 aspect-video lg:aspect-auto" : "aspect-video", imageContainerClassName)}>
+            <div className={cn("relative w-full", isMainProject ? "h-64 lg:h-80" : "aspect-video", imageContainerClassName)}>
               <Image
                 src={imageSrc || "/placeholder.svg"}
                 alt={title}
                 fill
-                sizes={isMainProject ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
+                sizes={isMainProject ? "(min-width: 1024px) 100vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
                 priority={priority}
                 className="object-cover"
               />
@@ -75,21 +93,23 @@ export default function ProjectCard({
             ))}
           </div>
 
-          {/* Bottom content - Compact layout or side layout for main */}
-          <div className={cn("p-4 sm:p-5 flex flex-col gap-3 justify-between", isMainProject && "w-full lg:w-1/3 lg:p-8")}>
-            <div>
-              <h3 className={cn("font-semibold leading-tight", isMainProject ? "text-2xl lg:text-3xl" : "text-lg sm:text-xl")}>{title}</h3>
-              <p className={cn("text-white/70", isMainProject ? "text-base lg:text-lg line-clamp-3" : "text-sm line-clamp-2")}>{subtitle}</p>
+          {/* Bottom content - Compact layout only for non-main */}
+          {!isMainProject && (
+            <div className="p-4 sm:p-5 flex flex-col gap-3 justify-between">
+              <div>
+                <h3 className="font-semibold leading-tight text-lg sm:text-xl">{title}</h3>
+                <p className="text-white/70 text-sm line-clamp-2">{subtitle}</p>
+              </div>
+              <Link
+                href={href}
+                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium backdrop-blur transition-colors hover:bg-white/20 self-start group/btn"
+                aria-label={`Open case study: ${title}`}
+              >
+                Case study
+                <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+              </Link>
             </div>
-            <Link
-              href={href}
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium backdrop-blur transition-colors hover:bg-white/20 self-start group/btn"
-              aria-label={`Open case study: ${title}`}
-            >
-              Case study
-              <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-            </Link>
-          </div>
+          )}
         </div>
       </RevealOnView>
     </article>

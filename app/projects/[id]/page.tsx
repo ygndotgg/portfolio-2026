@@ -19,7 +19,12 @@ const projectData: Record<string, any> = {
     natureImage: '/hydroimge.jpeg',
     description: 'A distributed networking system designed to handle real-time communication across multiple nodes with high reliability and low latency.',
     status: 'In Progress',
-    technologies: ['Rust', 'WebSockets', 'gRPC', 'Docker'],
+    technologies: {
+      'Languages': ['Rust'],
+      'Backend': ['WebSockets', 'gRPC', 'Docker'],
+      'Database': ['PostgreSQL'],
+      'Infrastructure': ['Kubernetes']
+    },
     features: [
       'Real-time message routing',
       'Fault tolerance and automatic recovery',
@@ -35,7 +40,12 @@ const projectData: Record<string, any> = {
     natureImage: '/dendroimg.jpeg',
     description: 'A distributed systems framework that simplifies building resilient, scalable applications with minimal boilerplate and maximum performance.',
     status: 'Upcoming',
-    technologies: ['Rust', 'Protocol Buffers', 'PostgreSQL', 'Kubernetes'],
+    technologies: {
+      'Languages': ['Rust'],
+      'Backend': ['Protocol Buffers', 'gRPC'],
+      'Database': ['PostgreSQL'],
+      'Infrastructure': ['Kubernetes']
+    },
     features: [
       'Consensus algorithm implementation',
       'Distributed transactions',
@@ -51,7 +61,12 @@ const projectData: Record<string, any> = {
     natureImage: '/dendroimg.jpeg',
     description: 'TBA - Coming soon with cutting-edge features for modern application development.',
     status: 'Upcoming',
-    technologies: ['TBA'],
+    technologies: {
+      'Languages': ['TBA'],
+      'Backend': ['TBA'],
+      'Database': ['TBA'],
+      'Infrastructure': ['TBA']
+    },
     features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
     progress: 10,
     startDate: 'September 2026',
@@ -62,7 +77,12 @@ const projectData: Record<string, any> = {
     natureImage: '/hydroimge.jpeg',
     description: 'TBA - Innovative solution for next-generation systems.',
     status: 'Upcoming',
-    technologies: ['TBA'],
+    technologies: {
+      'Languages': ['TBA'],
+      'Backend': ['TBA'],
+      'Database': ['TBA'],
+      'Infrastructure': ['TBA']
+    },
     features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
     progress: 5,
     startDate: 'December 2026',
@@ -73,7 +93,12 @@ const projectData: Record<string, any> = {
     natureImage: '/dendroimg.jpeg',
     description: 'TBA - Advanced technology platform.',
     status: 'Upcoming',
-    technologies: ['TBA'],
+    technologies: {
+      'Languages': ['TBA'],
+      'Backend': ['TBA'],
+      'Database': ['TBA'],
+      'Infrastructure': ['TBA']
+    },
     features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
     progress: 0,
     startDate: 'April 2027',
@@ -172,15 +197,22 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
               ))}
             </ul>
             <div className="mt-6 pt-6 border-t border-white/10">
-              <h6 className="font-semibold mb-3">Technologies</h6>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech: string, idx: number) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm border border-blue-500/30"
-                  >
-                    {tech}
-                  </span>
+              <h6 className="font-semibold mb-4">Technologies & Tools</h6>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {Object.entries(project.technologies).map(([category, techs]: [string, any]) => (
+                  <div key={category}>
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">{category}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {techs.map((tech: string, idx: number) => (
+                        <span
+                          key={idx}
+                          className="px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-300 text-xs border border-blue-500/30"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
