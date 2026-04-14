@@ -9,6 +9,7 @@ import { HeroWithSidebar } from "./hero-with-sidebar"
 import ProjectPage from "./projects"
 
 import { ExperienceEducationGrid } from "./experience-education"
+import ElementalShowcase from "./elemental-showcase"
 
 import ScrollController from "./ScrollWheel"
 
@@ -383,6 +384,7 @@ export default function Portfolio() {
   </section>
 
   {/* Other sections remain untouched */}
+  <ElementalShowcase />
   <ProjectPage />
   <ElementStackTimeline items={timelineItems} />
 </div>
