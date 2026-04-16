@@ -220,7 +220,7 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
           {/* Progress/Status Section - 1 column on desktop */}
           <div className="rounded-lg border border-white/20 p-6 bg-gradient-to-br from-gray-900/50 to-black">
             <h5 className="text-lg font-semibold mb-6">Progress & Status</h5>
-            
+
             {/* Progress Bar */}
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
@@ -241,11 +241,10 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
             <div className="space-y-4">
               <div>
                 <p className="text-gray-500 text-sm mb-1">Status</p>
-                <p className={`font-semibold ${
-                  project.status === 'In Progress' ? 'text-green-400' :
+                <p className={`font-semibold ${project.status === 'In Progress' ? 'text-green-400' :
                   project.status === 'Upcoming' ? 'text-yellow-400' :
-                  'text-gray-400'
-                }`}>
+                    'text-gray-400'
+                  }`}>
                   {project.status}
                 </p>
               </div>
@@ -263,14 +262,7 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
           </div>
         </motion.div>
 
-        {/* Eligible Roles Section */}
-        <RevealOnView
-          as="div"
-          intensity="hero"
-          className="mt-12"
-        >
-          <EligibleRoles />
-        </RevealOnView>
+
       </div>
     </div>
   )
