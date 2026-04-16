@@ -21,7 +21,7 @@ export default function FloatingNavDemo() {
     },
     {
       name: "Timeline",
-      link: "#resonance",
+      link: "/timeline",
     },
     {
       name: "Blog",
