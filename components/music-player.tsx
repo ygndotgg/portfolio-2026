@@ -42,7 +42,7 @@ export function MusicPlayer() {
 
   if (!currentTrack) {
     return (
-      <div className="max-w-md mx-auto p-2">
+      <div className="w-full">
         <div className="border border-white/10 rounded-md p-4 text-center text-slate-300">
           <Music className="w-8 h-8 mx-auto mb-2 opacity-60" />
           <LoaderFour />
@@ -59,9 +59,9 @@ export function MusicPlayer() {
     currentTrack.image?.[0]?.["#text"]
 
   return (
-    <div className="min-w-sm md:min-w-lg mx-auto p-2">
+    <div className="w-full">
       <div
-        className={`border rounded-xl p-3 flex items-center gap-4 bg-transparent ${
+        className={`border rounded-xl p-4 flex items-center gap-4 bg-transparent ${
           isPlaying
             ? "border-yellow-400/50 ring-1 ring-yellow-400/10"
             : "border-white/50"

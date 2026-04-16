@@ -9,7 +9,7 @@ import { BibleVerse } from "./bible-verse"
 
 export function HeroWithSidebar() {
   return (
-    <div id="about" className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+    <div id="about" className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 mt-8 sm:mt-12 lg:mt-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         {/* Left Side - Bio */}
         <div className="flex flex-col justify-start w-full">

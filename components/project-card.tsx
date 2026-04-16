@@ -1,28 +1,28 @@
-'use client'
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight, Github } from 'lucide-react'
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
-import RevealOnView from "@/components/reveal-on-view"
-import { useState } from "react"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Github } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import RevealOnView from "@/components/reveal-on-view";
+import { useState } from "react";
 
 type Props = {
-  title?: string
-  subtitle?: string
-  imageSrc?: string
-  tags?: string[]
-  href?: string
-  priority?: boolean
-  gradientFrom?: string
-  gradientTo?: string
-  imageContainerClassName?: string
-  containerClassName?: string
-  revealDelay?: number
-  isMainProject?: boolean
-  description?: string
-}
+  title?: string;
+  subtitle?: string;
+  imageSrc?: string;
+  tags?: string[];
+  href?: string;
+  priority?: boolean;
+  gradientFrom?: string;
+  gradientTo?: string;
+  imageContainerClassName?: string;
+  containerClassName?: string;
+  revealDelay?: number;
+  isMainProject?: boolean;
+  description?: string;
+};
 
 export default function ProjectCard({
   title = "Project title",
@@ -39,7 +39,7 @@ export default function ProjectCard({
   isMainProject = false,
   description = "",
 }: Props) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <article className={cn("group relative", containerClassName)}>
@@ -48,13 +48,15 @@ export default function ProjectCard({
         className={cn("rounded-3xl border transition-all duration-500")}
         style={{
           backgroundImage: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`,
-          borderColor: isHovered ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-          boxShadow: isHovered 
+          borderColor: isHovered
+            ? "rgba(255,255,255,0.3)"
+            : "rgba(255,255,255,0.1)",
+          boxShadow: isHovered
             ? `0 0 40px ${gradientFrom}40, inset 0 0 40px ${gradientFrom}20`
             : `0 0 20px ${gradientFrom}20`,
         }}
       >
-        <div 
+        <div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           className="relative overflow-hidden rounded-[1.35rem] bg-black flex flex-col h-full"
@@ -69,7 +71,7 @@ export default function ProjectCard({
               priority={priority}
               className="object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            <div 
+            <div
               className="pointer-events-none absolute inset-0"
               style={{
                 background: `linear-gradient(180deg, transparent 0%, ${gradientFrom}30 100%)`,
@@ -93,7 +95,9 @@ export default function ProjectCard({
 
             {/* Title and Subtitle */}
             <div>
-              <h3 className="font-semibold leading-tight text-lg sm:text-xl">{title}</h3>
+              <h3 className="font-semibold leading-tight text-lg sm:text-xl">
+                {title}
+              </h3>
               <p className="text-white/70 text-sm line-clamp-2">{subtitle}</p>
             </div>
 
@@ -111,12 +115,12 @@ export default function ProjectCard({
               aria-label={`Open project: ${title}`}
             >
               <Github className="h-4 w-4" />
-              GitHub
+              View
               <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
             </Link>
           </div>
         </div>
       </RevealOnView>
     </article>
-  )
+  );
 }

@@ -4,7 +4,6 @@ import ProjectCard from "@/components/project-card";
 import AnimatedHeading from "@/components/animated-heading";
 import RevealOnView from "@/components/reveal-on-view";
 import CompactDetails from "./compact-details";
-import { ExperienceEducationGrid } from "./experience-education";
 
 export default function ProjectPage() {
   const projects = [
@@ -41,6 +40,16 @@ export default function ProjectPage() {
       {/* Full width section with consistent padding */}
       <section className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <div className="w-full">
+          {/* Header */}
+          <div className="mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-white">
+              Featured Projects
+            </h2>
+            <p className="text-white/70 text-base sm:text-lg">
+              Building systems from first principles with Rust
+            </p>
+          </div>
+
           {/* HERO: grid with left sticky sidebar; right scrolls internally. */}
           <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-[420px_minmax(0,1fr)]">
             {/* LEFT: sticky and full height sidebar */}
@@ -127,21 +136,8 @@ export default function ProjectPage() {
                     description={p.description}
                   />
                 </div>
-              ))}
-              
-              {/* Experience Section */}
-              <div className="w-full pt-8">
-                <div className="mb-6 sm:mb-8">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-white">
-                    Experience & Education
-                  </h2>
-                  <p className="text-white/70 text-base sm:text-lg">
-                    Building my professional journey
-                  </p>
-                </div>
-                <ExperienceEducationGrid />
-              </div>
-            </div>
+               ))}
+             </div>
           </div>
         </div>
       </section>

@@ -44,7 +44,7 @@ export function BibleVerse() {
   }, [])
 
   return (
-    <Card className="max-w-xl md:max-w-2xl mt-2 md:mt-16 p-4 md:p-6 bg-black text-white border border-white/50 rounded-lg">
+    <Card className="w-full p-4 md:p-6 bg-black text-white border border-white/50 rounded-lg">
       {loading && !verseData ? (
         <div className="text-center text-muted-foreground">
           <LoaderFour />

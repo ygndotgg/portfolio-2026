@@ -71,7 +71,7 @@ export function RecentProjects() {
 
   if (loading) {
     return (
-      <div className="min-w-lg h-full border border-white/60 rounded-xl p-6 flex items-center justify-center bg-transparent">
+      <div className="w-full h-full border border-white/60 rounded-xl p-6 flex items-center justify-center bg-transparent">
         <div className="text-center">
           <Code className="w-8 h-8 mx-auto mb-2 opacity-60 text-slate-300" />
           <p className="text-sm text-slate-400">
@@ -84,7 +84,7 @@ export function RecentProjects() {
 
   if (repoError || projects.length === 0) {
     return (
-      <div className="min-w-lg h-full border border-white/50 rounded-xl p-6 flex items-center justify-center bg-transparent">
+      <div className="w-full h-full border border-white/50 rounded-xl p-6 flex items-center justify-center bg-transparent">
         <div className="text-center">
           <Github className="w-8 h-8 mx-auto mb-2 opacity-60 text-slate-300" />
           <p className="text-sm text-slate-400">No projects found</p>
@@ -94,7 +94,7 @@ export function RecentProjects() {
   }
 
   return (
-    <div className="min-w-sm md:min-w-lg h-full border border-white/50 rounded-xl p-6 bg-transparent flex flex-col">
+    <div className="w-full h-full border border-white/50 rounded-xl p-6 bg-transparent flex flex-col">
       {/* Header */}
       <div className="flex items-center gap-2 mb-6">
         <Github className="w-5 h-5 text-slate-300" />
