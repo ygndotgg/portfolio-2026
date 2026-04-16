@@ -43,8 +43,8 @@ export function MusicPlayer() {
   if (!currentTrack) {
     return (
       <div className="w-full">
-        <div className="border border-white/10 rounded-md p-4 text-center text-slate-300">
-          <Music className="w-8 h-8 mx-auto mb-2 opacity-60" />
+        <div className="flex items-center justify-center p-4 text-center text-slate-400">
+          <Music className="w-6 h-6 mr-2 opacity-60" />
           <LoaderFour />
         </div>
       </div>
@@ -61,10 +61,10 @@ export function MusicPlayer() {
   return (
     <div className="w-full">
       <div
-        className={`border rounded-xl p-4 flex items-center gap-4 bg-transparent ${
+        className={`rounded-lg p-4 flex items-center gap-4 bg-transparent transition-all duration-300 ${
           isPlaying
-            ? "border-yellow-400/50 ring-1 ring-yellow-400/10"
-            : "border-white/50"
+            ? "ring-1 ring-yellow-400/20"
+            : ""
         }`}
       >
         {/* Album Art */}
