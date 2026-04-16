@@ -1,9 +1,11 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Github } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-import RevealOnView from "@/components/reveal-on-view"
+import { useState } from "react"
 
 type Props = {
   title?: string
@@ -18,9 +20,9 @@ type Props = {
   containerClassName?: string
   revealDelay?: number
   isMainProject?: boolean
+  description?: string
 }
 
-// Server Component (no client hooks)
 export default function ProjectCard({
   title = "Project title",
   subtitle = "Project subtitle",
@@ -34,103 +36,101 @@ export default function ProjectCard({
   containerClassName,
   revealDelay = 0,
   isMainProject = false,
+  description = "",
 }: Props) {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
-    <article className={cn("group relative", containerClassName)}>
-      <RevealOnView
-        delay={revealDelay}
-        className={cn("rounded-3xl border border-white/10 p-1 shadow-[0_10px_60px_-10px_rgba(0,0,0,0.6)]", isMainProject && "lg:h-full")}
-        style={{
-          backgroundImage: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`,
-        }}
+    <article className={cn("group relative h-screen w-full", containerClassName)}>
+      <div 
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="relative w-full h-full overflow-hidden bg-black"
       >
-        <div className={cn("relative overflow-hidden rounded-[1.35rem] bg-black", isMainProject ? "flex flex-col" : "flex flex-col h-auto")}>
-          {/* Tags - Positioned absolutely on both layouts */}
-          <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 z-20">
+        {/* Background Image */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={imageSrc || "/placeholder.svg"}
+            alt={title}
+            fill
+            sizes="100vw"
+            priority={priority}
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          
+          {/* Dynamic gradient overlay */}
+          <div 
+            className="absolute inset-0 transition-opacity duration-500"
+            style={{
+              background: `linear-gradient(135deg, ${gradientFrom}40 0%, ${gradientTo}30 50%, transparent 100%)`,
+            }}
+          />
+          
+          {/* Dark overlay for content readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        </div>
+
+        {/* Content at Bottom */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 p-6 sm:p-8 lg:p-12">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-6">
             {tags.map((t) => (
               <Badge
                 key={t}
-                variant="secondary"
-                className="pointer-events-auto bg-black/50 text-white border-white/20 backdrop-blur-sm"
+                className="bg-black/60 text-white border-white/30 backdrop-blur-md font-medium text-xs sm:text-sm"
               >
                 {t}
               </Badge>
             ))}
           </div>
 
-          {/* Main Project Layout: Content on top, Image on bottom */}
-          {isMainProject ? (
-            <>
-              {/* Content Section */}
-              <div className="p-4 sm:p-6 lg:p-10 flex flex-col justify-between flex-1 bg-gradient-to-b from-white/5 via-white/2 to-transparent">
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="space-y-1 sm:space-y-2">
-                    <h3 className="font-bold leading-tight text-2xl sm:text-3xl lg:text-4xl bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">{title}</h3>
-                    <p className="text-white/60 text-sm sm:text-base lg:text-lg font-light leading-relaxed">{subtitle}</p>
-                  </div>
-                  
-                  {/* Visual Separator */}
-                  <div className="h-px bg-gradient-to-r from-blue-500/50 via-blue-500/30 to-transparent w-12 mt-2 sm:mt-4" />
-                </div>
+          {/* Header */}
+          <div className="space-y-3 sm:space-y-4 mb-6">
+            <div className="space-y-1 sm:space-y-2">
+              <h3 className="font-bold leading-tight text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
+                {title}
+              </h3>
+              <p className="text-white/70 text-base sm:text-lg font-medium">
+                {subtitle}
+              </p>
+            </div>
 
-                {/* CTA Button with enhanced styling */}
-                <Link
-                  href={href}
-                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-white backdrop-blur transition-all duration-300 hover:from-blue-500 hover:to-blue-400 hover:shadow-lg hover:shadow-blue-500/50 self-start group/btn mt-4 sm:mt-6 border border-blue-400/30"
-                  aria-label={`Open case study: ${title}`}
-                >
-                  Explore Project
-                  <ArrowRight className="h-3.5 sm:h-4 w-3.5 sm:w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                </Link>
-              </div>
+            {/* Accent line */}
+            <div 
+              className="h-1 w-16 rounded-full transition-all duration-500"
+              style={{
+                background: `linear-gradient(90deg, ${gradientFrom}, ${gradientTo})`,
+              }}
+            />
+          </div>
 
-              {/* Image Section */}
-              <div className="relative w-full h-48 sm:h-56 lg:h-80">
-                <Image
-                  src={imageSrc || "/placeholder.svg"}
-                  alt={title}
-                  fill
-                  sizes="(min-width: 1024px) 100vw, (min-width: 640px) 100vw, 100vw"
-                  priority={priority}
-                  className="object-cover"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Compact Project Layout: Image on top, Content on bottom */}
-              <div className="relative w-full aspect-video">
-                <Image
-                  src={imageSrc || "/placeholder.svg"}
-                  alt={title}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  priority={priority}
-                  className="object-cover"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-              </div>
-
-              {/* Content Section */}
-              <div className="p-4 sm:p-5 flex flex-col gap-3 justify-between">
-                <div>
-                  <h3 className="font-semibold leading-tight text-lg sm:text-xl">{title}</h3>
-                  <p className="text-white/70 text-sm line-clamp-2">{subtitle}</p>
-                </div>
-                <Link
-                  href={href}
-                  className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium backdrop-blur transition-colors hover:bg-white/20 self-start group/btn"
-                  aria-label={`Open case study: ${title}`}
-                >
-                  Case study
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                </Link>
-              </div>
-            </>
+          {/* Description */}
+          {description && (
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6 max-w-2xl">
+              {description}
+            </p>
           )}
+
+          {/* CTA Button */}
+          <Link
+            href={href}
+            className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all duration-300 group/btn border border-white/20 hover:border-white/40 hover:bg-white/10"
+            aria-label={`Open project: ${title}`}
+          >
+            <Github className="h-4 w-4" />
+            GitHub
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+          </Link>
         </div>
-      </RevealOnView>
+
+        {/* Animated gradient background on hover */}
+        <div 
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at 30% 30%, ${gradientFrom}20 0%, transparent 50%)`,
+          }}
+        />
+      </div>
     </article>
   )
 }

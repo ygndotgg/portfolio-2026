@@ -264,10 +264,10 @@ export default function Portfolio() {
       {/* Mac OS Style Menu Bar */}
 
 
-      {/* First Section - Main Portfolio */}
-      <div className="p-4 sm:p-8 md:min-h-screen flex flex-col items-center md:justify-center justify-start relative">
+      {/* First Section - Main Portfolio - Full Width */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 flex flex-col items-center relative">
         {/* Static Banner */}
-        <div className="w-full max-w-2xl ">
+        <div className="w-full max-w-3xl mb-12 sm:mb-16">
           <ProfileCard name="Gagan Yarramsetty" title="System Engineer | Rustacean🦀" subtitle="YGN | Xiao" imageUrl="/ban.jpeg" />
         </div>
         {/* <div className="mx-auto mt-8 absolute right-0 bottom-0 ">
@@ -361,43 +361,8 @@ export default function Portfolio() {
 
       <HeroWithSidebar />
 
-      {/* Timeline Section */}
-
-
-      {/* Third Section - Projects */}
-      <div>
-        {/* Experience Section */}
-        <section
-          id="experience"
-          className="
-      w-full
-      px-4 sm:px-6 lg:px-8
-      mx-auto
-      max-w-6xl
-      lg:max-w-screen-2xl
-    "
-        >
-          {/* Heading stays centered */}
-          <div className="mb-4 text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-slate-50 mb-2">
-              Experience & Education
-            </h1>
-            <p className="text-slate-400 text-base sm:text-lg">
-              Building my professional journey
-            </p>
-          </div>
-
-          {/* Bento grid controls its own width */}
-          <ExperienceEducationGrid />
-        </section>
-
-        {/* Other sections remain untouched */}
-        <ProjectPage />
-      </div>
-
-
-
-      {/* Fourth Section - Contact */}
+      {/* Projects Section */}
+      <ProjectPage />
 
     </div>
   )

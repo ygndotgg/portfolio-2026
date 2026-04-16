@@ -44,9 +44,9 @@ export function Footer() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="relative bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-black/50 to-black backdrop-blur-md border-t border-white/10 py-8 sm:py-10 px-4 sm:px-6 lg:px-8 mt-12"
+      className="relative bottom-0 left-0 right-0 w-full bg-gradient-to-b from-transparent via-black/50 to-black backdrop-blur-md border-t border-white/10 py-8 sm:py-10 px-4 sm:px-6 lg:px-8 mt-12"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-4">
           {/* Social Links */}
           <motion.div variants={item} className="flex space-x-4 sm:space-x-6">
@@ -56,7 +56,7 @@ export function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/60 hover:text-sky-400 transition-colors duration-300"
+                className="text-white/60 hover:text-sky-400 transition-colors duration-300 cursor-pointer"
                 whileHover={{ scale: 1.15, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={link.label}

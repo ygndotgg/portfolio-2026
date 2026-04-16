@@ -77,13 +77,28 @@ const TimelineCard = ({
         }
       }}
       aria-expanded={hovered}
-      className="border border-gray-700 group/canvas-card flex items-center justify-center dark:border-white/[0.2] w-full min-h-[200px] sm:min-h-[240px] md:h-64 p-3 sm:p-4 relative rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 hover:border-white/50 hover:shadow-lg hover:shadow-white/20 z-50 active:scale-95 sm:active:scale-100"
+      className="group/canvas-card flex items-center justify-center w-full min-h-[280px] sm:min-h-[320px] md:h-80 lg:h-96 p-3 sm:p-4 relative rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 z-50 active:scale-95 sm:active:scale-100"
+      style={{
+        borderColor: item.gradientColor,
+        borderWidth: hovered ? '2px' : '1px',
+        boxShadow: hovered 
+          ? `0 0 30px ${item.gradientColor}80, 0 0 60px ${item.gradientColor}40, inset 0 0 30px ${item.gradientColor}20, 0 0 20px ${item.gradientColor}60`
+          : `0 0 20px ${item.gradientColor}40, inset 0 0 20px ${item.gradientColor}10`,
+      }}
     >
       {/* Corner decorations */}
       <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white" />
       <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-white" />
       <Icon className="absolute h-6 w-6 -top-3 -right-3 text-white" />
       <Icon className="absolute h-6 w-6 -bottom-3 -right-3 text-white" />
+
+      {/* Glowing background effect */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover/canvas-card:opacity-100 transition-opacity duration-300 rounded-lg"
+        style={{
+          background: `radial-gradient(circle at center, ${item.gradientColor}20 0%, ${item.gradientColor}10 40%, transparent 70%)`,
+        }}
+      />
 
       <AnimatePresence>
         {/* If an image URL exists, show it and let it fully occupy the card */}
@@ -151,7 +166,7 @@ export function ElementStackTimeline({
 
   return (
     <div id="resonance" className="w-full bg-black text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="text-center mb-10 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-balance">{title}</h1>
@@ -159,7 +174,7 @@ export function ElementStackTimeline({
         </div>
 
         {/* Card Stack */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5 lg:gap-6 mb-10 sm:mb-12">
           {items.map((item) => (
             <div key={item.id} className="flex flex-col items-center gap-3 sm:gap-4">
               <TimelineCard item={item} hovered={hoveredCard === item.id} onHover={setHoveredCard} />
