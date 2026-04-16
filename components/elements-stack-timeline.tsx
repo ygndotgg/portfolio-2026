@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 export interface TimelineItem {
   id: string
@@ -52,9 +53,13 @@ const TimelineCard = ({
   hovered: boolean
   onHover: (id: string | null) => void
 }) => {
-  const handleNavigate = () => {
+  const router = useRouter()
+  
+  const handleNavigate = (e: React.MouseEvent | React.TouchEvent | React.KeyboardEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     if (item.route) {
-      window.location.href = item.route
+      router.push(item.route)
     }
   }
 
@@ -62,17 +67,17 @@ const TimelineCard = ({
     <div
       onMouseEnter={() => onHover(item.id)}
       onMouseLeave={() => onHover(null)}
-      onClick={handleNavigate}
-      onTouchEnd={handleNavigate}
+      onClick={(e) => handleNavigate(e)}
+      onTouchEnd={(e) => handleNavigate(e)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
         if ((e.key === 'Enter' || e.key === ' ') && item.route) {
-          handleNavigate()
+          handleNavigate(e)
         }
       }}
       aria-expanded={hovered}
-      className="border border-gray-700 group/canvas-card flex items-center justify-center dark:border-white/[0.2] w-full min-h-[200px] sm:min-h-[240px] md:h-64 p-3 sm:p-4 relative rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 hover:border-white/50 hover:shadow-lg hover:shadow-white/20 z-10 active:scale-95 sm:active:scale-100"
+      className="border border-gray-700 group/canvas-card flex items-center justify-center dark:border-white/[0.2] w-full min-h-[200px] sm:min-h-[240px] md:h-64 p-3 sm:p-4 relative rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 hover:border-white/50 hover:shadow-lg hover:shadow-white/20 z-50 active:scale-95 sm:active:scale-100"
     >
       {/* Corner decorations */}
       <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white" />
