@@ -20,8 +20,13 @@ export default function FloatingNavDemo() {
       link: "#projects",
     },
     {
-      name: "Resonance",
+      name: "Timeline",
       link: "#resonance",
+    },
+    {
+      name: "Blog",
+      link: "https://ygndotgg.github.io/",
+      external: true,
     },
   ]
 

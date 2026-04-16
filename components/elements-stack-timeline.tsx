@@ -15,7 +15,8 @@ export interface TimelineItem {
   icon: string
   status?: "completed" | "in-progress" | "upcoming"
   statusLabel?: string
-  imge:string
+  imge: string
+  route?: string
 }
 
 interface ElementStackTimelineProps {
@@ -56,13 +57,15 @@ const TimelineCard = ({
       onMouseEnter={() => onHover(item.id)}
       onMouseLeave={() => onHover(null)}
       onClick={() => {
-        window.location.href = `/projects/${item.id}`
+        if (item.route) {
+          window.location.href = item.route
+        }
       }}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          window.location.href = `/projects/${item.id}`
+        if ((e.key === 'Enter' || e.key === ' ') && item.route) {
+          window.location.href = item.route
         }
       }}
       aria-expanded={hovered}

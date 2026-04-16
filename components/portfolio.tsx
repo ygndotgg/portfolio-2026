@@ -21,7 +21,8 @@ export const timelineItems: TimelineItem[] = [
     gradientColor: "#0066ff",
     icon: "/hydro.jpg",
     status: "in-progress",
-    imge: "/hydroimge.jpeg"
+    imge: "/hydroimge.jpeg",
+    route: "/est/hydro"
   },
   {
     id: "Dendro",
@@ -31,7 +32,8 @@ export const timelineItems: TimelineItem[] = [
     gradientColor: "#00cc00",
     icon: "/dendro.jpg",
     status: "upcoming",
-    imge: "/dendroimg.jpeg"
+    imge: "/dendroimg.jpeg",
+    route: "/est/dendro"
   },
   {
     id: "Anemo",
@@ -41,7 +43,8 @@ export const timelineItems: TimelineItem[] = [
     gradientColor: "#54DCB4",
     icon: "/anemo.jpg",
     status: "upcoming",
-    imge: ""
+    imge: "",
+    route: "/est/anemo"
   },
   {
     id: "Pyro",
@@ -51,7 +54,8 @@ export const timelineItems: TimelineItem[] = [
     gradientColor: "#cc0000",
     icon: "/pyro.jpg",
     status: "upcoming",
-    imge: ""
+    imge: "",
+    route: "/est/pyro"
   },
   {
     id: "Cryo",
@@ -61,7 +65,8 @@ export const timelineItems: TimelineItem[] = [
     gradientColor: "#D4F1F8",
     icon: "/cryo.jpg",
     status: "upcoming",
-    imge: ""
+    imge: "",
+    route: "/est/cryo"
   },
 ]
 export default function Portfolio() {
