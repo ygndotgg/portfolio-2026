@@ -62,18 +62,25 @@ export default function ProjectCard({
           {isMainProject ? (
             <>
               {/* Content Section */}
-              <div className="p-6 lg:p-8 flex flex-col justify-between flex-1">
-                <div>
-                  <h3 className="font-semibold leading-tight text-2xl lg:text-3xl mb-3">{title}</h3>
-                  <p className="text-white/70 text-base lg:text-lg line-clamp-3">{subtitle}</p>
+              <div className="p-6 lg:p-10 flex flex-col justify-between flex-1 bg-gradient-to-b from-white/5 via-white/2 to-transparent">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h3 className="font-bold leading-tight text-3xl lg:text-4xl bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">{title}</h3>
+                    <p className="text-white/60 text-base lg:text-lg font-light leading-relaxed">{subtitle}</p>
+                  </div>
+                  
+                  {/* Visual Separator */}
+                  <div className="h-px bg-gradient-to-r from-blue-500/50 via-blue-500/30 to-transparent w-12 mt-4" />
                 </div>
+
+                {/* CTA Button with enhanced styling */}
                 <Link
                   href={href}
-                  className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium backdrop-blur transition-colors hover:bg-white/20 self-start group/btn mt-4"
+                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all duration-300 hover:from-blue-500 hover:to-blue-400 hover:shadow-lg hover:shadow-blue-500/50 self-start group/btn mt-6 border border-blue-400/30"
                   aria-label={`Open case study: ${title}`}
                 >
-                  Case study
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                  Explore Project
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
                 </Link>
               </div>
 

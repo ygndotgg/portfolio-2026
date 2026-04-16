@@ -355,13 +355,9 @@ export default function Portfolio() {
       </div>
 
       <HeroWithSidebar />
-      
+
       {/* Timeline Section */}
-      <ElementStackTimeline 
-        title="Elemental Resonance"
-        subtitle="Project Timeline"
-        items={timelineItems}
-      />
+
 
       {/* Third Section - Projects */}
       <div>
