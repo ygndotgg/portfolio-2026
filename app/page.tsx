@@ -1,6 +1,6 @@
-import { ElementStackTimeline } from '@/components/elements-stack-timeline'
-import { Footer } from '@/components/Footer'
-import Portfolio, { timelineItems } from '@/components/portfolio'
+import { ElementStackTimeline } from "@/components/elements-stack-timeline";
+import { Footer } from "@/components/Footer";
+import Portfolio, { timelineItems } from "@/components/portfolio";
 
 const page = () => {
   return (
@@ -9,7 +9,7 @@ const page = () => {
       <ElementStackTimeline items={timelineItems} />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

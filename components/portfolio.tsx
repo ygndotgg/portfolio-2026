@@ -1,39 +1,37 @@
-
-import Image from "next/image"
+import Image from "next/image";
 // import { PixelatedCanvas } from "./ui/pixelated-canvas"
-import { ElementStackTimeline, TimelineItem } from "./elements-stack-timeline"
-import ProfileCard from "./profile-card"
+import { ElementStackTimeline, TimelineItem } from "./elements-stack-timeline";
+import ProfileCard from "./profile-card";
 
+import { HeroWithSidebar } from "./hero-with-sidebar";
+import ProjectPage from "./projects";
 
-import { HeroWithSidebar } from "./hero-with-sidebar"
-import ProjectPage from "./projects"
+import { ExperienceEducationGrid } from "./experience-education";
 
-import { ExperienceEducationGrid } from "./experience-education"
-
-import ScrollController from "./ScrollWheel"
+import ScrollController from "./ScrollWheel";
 
 export const timelineItems: TimelineItem[] = [
   {
     id: "Hydro",
-    label: "Hydro",
-    date: "Jan 2026",
-    description: "Networking",
+    label: "Triveni",
+    date: "Apr 2026",
+    description: "Data Engineereing",
     gradientColor: "#0066ff",
     icon: "/hydro.jpg",
-    status: "in-progress",
+    status: "completed",
     imge: "/hydroimge.jpeg",
-    route: "/est/hydro"
+    route: "/est/hydro",
   },
   {
     id: "Dendro",
-    label: "Dendro",
-    date: "May 2026",
+    label: "Aryavarth",
+    date: "Jun 2026",
     description: "Distributed Systems",
     gradientColor: "#00cc00",
     icon: "/dendro.jpg",
-    status: "upcoming",
+    status: "in-progress",
     imge: "/dendroimg.jpeg",
-    route: "/est/dendro"
+    route: "/est/dendro",
   },
   {
     id: "Anemo",
@@ -44,7 +42,7 @@ export const timelineItems: TimelineItem[] = [
     icon: "/anemo.jpg",
     status: "upcoming",
     imge: "",
-    route: "/est/anemo"
+    route: "/est/anemo",
   },
   {
     id: "Pyro",
@@ -55,7 +53,7 @@ export const timelineItems: TimelineItem[] = [
     icon: "/pyro.jpg",
     status: "upcoming",
     imge: "",
-    route: "/est/pyro"
+    route: "/est/pyro",
   },
   {
     id: "Cryo",
@@ -66,16 +64,13 @@ export const timelineItems: TimelineItem[] = [
     icon: "/cryo.jpg",
     status: "upcoming",
     imge: "",
-    route: "/est/cryo"
+    route: "/est/cryo",
   },
-]
+];
 export default function Portfolio() {
-
-
   return (
     <div
       className="bg-black font-mono relative"
-
       style={{ cursor: "url(/skull-cursor.png) 16 16, auto" }}
     >
       {/* <style jsx>{`
@@ -252,7 +247,6 @@ export default function Portfolio() {
         <ScrollController />
       </main>
 
-
       {/* Audio Elements */}
       {/* <audio ref={clickSoundRef} preload="auto">
         <source src="/click-sound.wav" type="audio/wav" />
@@ -263,13 +257,18 @@ export default function Portfolio() {
 
       {/* Mac OS Style Menu Bar */}
 
-
       {/* First Section - Main Portfolio - Full Width */}
       <div className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 flex flex-col items-center relative">
         {/* Static Banner */}
         <div className="w-full max-w-3xl mb-12 sm:mb-16">
-          <ProfileCard name="Gagan Yarramsetty" title="System Engineer | Rustacean🦀" subtitle="YGN | Xiao" imageUrl="/ban.jpeg" />
+          <ProfileCard
+            name="Gagan Yarramsetty"
+            title="System Engineer | Rustacean🦀"
+            subtitle="YGN | Xiao"
+            imageUrl="/ban.jpeg"
+          />
         </div>
+
         {/* <div className="mx-auto mt-8 absolute right-0 bottom-0 ">
       <PixelatedCanvas
         src="https://assets.aceternity.com/manu-red.png"
@@ -290,7 +289,7 @@ export default function Portfolio() {
         sampleAverage
         tintColor="#FFFFFF"
         tintStrength={0.2}
-       
+
       />
     </div> */}
 
@@ -362,8 +361,6 @@ export default function Portfolio() {
       <HeroWithSidebar />
 
       {/* Projects Section */}
-      <ProjectPage />
-
     </div>
-  )
+  );
 }

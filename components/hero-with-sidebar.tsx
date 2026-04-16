@@ -9,27 +9,27 @@ import { BibleVerse } from "./bible-verse"
 
 export function HeroWithSidebar() {
   return (
-    <div id="about" className="w-full grid grid-cols-1 lg:grid-cols-2 gap-0 px-4 sm:px-6 lg:px-8 py-0 items-start">
-      {/* Left Side - Text Effect (Full Width on Mobile) */}
-      <div className="flex flex-col items-start md:items-center justify-center space-y-6 w-full">
-        <div className="w-full max-w-2xl">
+    <div id="about" className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        {/* Left Side - Bio */}
+        <div className="flex flex-col justify-start w-full">
           <Bio/>
-          <div className="mt-6">
+          <div className="mt-8">
             <BibleVerse/>
           </div>
         </div>
-      </div>
 
-      {/* Right Side - Stacked Components */}
-      <div className="flex flex-col gap-6 h-full w-full">
-        {/* Top - Recent Projects */}
-        <div className="flex-1 min-h-56 md:min-h-96 order-2 md:order-1">
-          <RecentProjects />
-        </div>
+        {/* Right Side - Stacked Components */}
+        <div className="flex flex-col gap-8 w-full">
+          {/* Top - Recent Projects */}
+          <div className="min-h-56 md:min-h-96">
+            <RecentProjects />
+          </div>
 
-        {/* Bottom - Music Player */}
-        <div className="shrink-0 order-1 md:order-2">
-          <MusicPlayer />
+          {/* Bottom - Music Player */}
+          <div>
+            <MusicPlayer />
+          </div>
         </div>
       </div>
     </div>

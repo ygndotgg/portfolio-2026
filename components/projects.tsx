@@ -4,6 +4,7 @@ import ProjectCard from "@/components/project-card";
 import AnimatedHeading from "@/components/animated-heading";
 import RevealOnView from "@/components/reveal-on-view";
 import CompactDetails from "./compact-details";
+import { ExperienceEducationGrid } from "./experience-education";
 
 export default function ProjectPage() {
   const projects = [
@@ -108,13 +109,10 @@ export default function ProjectPage() {
               </RevealOnView>
             </aside>
 
-            {/* RIGHT: Dynamic grid layout - main projects span 2 columns */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-max">
+            {/* RIGHT: Vertical stack of cards */}
+            <div className="flex flex-col gap-4">
               {projects.map((p, idx) => (
-                <div
-                  key={p.title}
-                  className={p.isMainProject ? "md:col-span-2" : ""}
-                >
+                <div key={p.title} className="w-full">
                   <ProjectCard
                     title={p.title}
                     subtitle={p.subtitle}
@@ -130,6 +128,19 @@ export default function ProjectPage() {
                   />
                 </div>
               ))}
+              
+              {/* Experience Section */}
+              <div className="w-full pt-8">
+                <div className="mb-6 sm:mb-8">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-white">
+                    Experience & Education
+                  </h2>
+                  <p className="text-white/70 text-base sm:text-lg">
+                    Building my professional journey
+                  </p>
+                </div>
+                <ExperienceEducationGrid />
+              </div>
             </div>
           </div>
         </div>
