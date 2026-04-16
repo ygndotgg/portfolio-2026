@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 export interface TimelineItem {
   id: string
@@ -15,7 +16,8 @@ export interface TimelineItem {
   icon: string
   status?: "completed" | "in-progress" | "upcoming"
   statusLabel?: string
-  imge:string
+  imge: string
+  route?: string
 }
 
 interface ElementStackTimelineProps {
@@ -51,22 +53,31 @@ const TimelineCard = ({
   hovered: boolean
   onHover: (id: string | null) => void
 }) => {
+  const router = useRouter()
+  
+  const handleNavigate = (e: React.MouseEvent | React.TouchEvent | React.KeyboardEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (item.route) {
+      router.push(item.route)
+    }
+  }
+
   return (
     <div
       onMouseEnter={() => onHover(item.id)}
       onMouseLeave={() => onHover(null)}
-      onClick={() => {
-        window.location.href = `/projects/${item.id}`
-      }}
+      onClick={(e) => handleNavigate(e)}
+      onTouchEnd={(e) => handleNavigate(e)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          window.location.href = `/projects/${item.id}`
+        if ((e.key === 'Enter' || e.key === ' ') && item.route) {
+          handleNavigate(e)
         }
       }}
       aria-expanded={hovered}
-      className="border border-gray-700 group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative h-48 md:h-64 rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 hover:border-white/50 hover:shadow-lg hover:shadow-white/20 z-10"
+      className="border border-gray-700 group/canvas-card flex items-center justify-center dark:border-white/[0.2] w-full min-h-[200px] sm:min-h-[240px] md:h-64 p-3 sm:p-4 relative rounded-lg overflow-hidden bg-black cursor-pointer transition-all duration-300 hover:border-white/50 hover:shadow-lg hover:shadow-white/20 z-50 active:scale-95 sm:active:scale-100"
     >
       {/* Corner decorations */}
       <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white" />
@@ -139,27 +150,27 @@ export function ElementStackTimeline({
   }
 
   return (
-    <div id="resonance" className="w-full bg-black text-white py-16 px-8">
+    <div id="resonance" className="w-full bg-black text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-2 text-balance">{title}</h1>
-          <p className="text-2xl text-gray-400 text-balance">{subtitle}</p>
+        <div className="text-center mb-10 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-balance">{title}</h1>
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-400 text-balance">{subtitle}</p>
         </div>
 
         {/* Card Stack */}
-        <div className="flex justify-center gap-6 mb-12 flex-wrap lg:flex-nowrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 mb-10 sm:mb-12">
           {items.map((item) => (
-            <div key={item.id} className="flex flex-col items-center gap-4 flex-1 min-w-40">
+            <div key={item.id} className="flex flex-col items-center gap-3 sm:gap-4">
               <TimelineCard item={item} hovered={hoveredCard === item.id} onHover={setHoveredCard} />
 
               {/* Bottom Info */}
               <div className="text-center w-full">
-                <p className="text-lg font-medium">{item.date}</p>
+                <p className="text-sm sm:text-base font-medium">{item.date}</p>
                 {item.status && (
                   <p
                     className={cn(
-                      "text-sm mt-1",
+                      "text-xs sm:text-sm mt-1",
                       item.status === "completed" || item.status == "in-progress"
                         ? "text-green-400"
                         : item.status === "upcoming"
@@ -173,13 +184,13 @@ export function ElementStackTimeline({
               </div>
 
               {/* Description */}
-              <p className="text-gray-300 text-sm text-center">{item.description}</p>
+              <p className="text-gray-300 text-xs sm:text-sm text-center">{item.description}</p>
             </div>
           ))}
         </div>
 
         {/* Timeline Bar */}
-        <div className="h-2 rounded-full mb-8 shadow-lg" style={{ background: getTimelineGradient() }} />
+        <div className="h-1.5 sm:h-2 rounded-full mb-6 sm:mb-8 shadow-lg" style={{ background: getTimelineGradient() }} />
       </div>
     </div>
   )
